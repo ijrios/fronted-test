@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--
+  In this file:
+  - You CAN edit the <body> structure and contents.
+  - You CAN change the current tags and their order inside the <body>.
+  - You CAN add new tags, ids and classes or wrap the existing ones inside the <body>.
+  BUT:
+  - You CANNOT edit the <head>.
+  - You CANNOT add additional external references (libraries, frameworks, etc.), this is going to be automatically tested.
+  - You CANNOT add javascript code or additional stylesheets. The test only copies your index.html and style.css files.
+  - You CANNOT remove template tags (variables between {}). The test may change the content of these.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magnet Frontend Test</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600;800&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet" />
+    <script src="site.js"></script>
+  </head>
+  <body>
+    <div class="navbar">
+      <img src="img/logo.png" alt="Magnet Logo" class="navbar-logo">
+	  <div class= "dogos">
+	    <p>Dogos</p>
+	  </div>
+      <div class="navlinks">
+        {navlinks}
+      </div>
+    </div>
+	<div class="title">
+    <h1>{title}</h1>
+</div>
+    <div class="card-container">
+      <div class="card_unus" id="card1" >
+        <div class="content1">
+          {content1}
+        </div>
+		<div class="button">
+        <a href="#" >
+	          <img src="img/paw.png" alt="Learn More Icon" class="icon">
+		          <span class="text">Learn more</span>
+          </a>
+		  </div>
+      </div>
+      <div class="card_duo">
+        <div class="content2">
+          {content2}
+        </div>
+		<br class="custom-br" />
+		<div class="button">
+       <a href="#">
+	          <img src="img/paw.png" alt="Learn More Icon" class="icon">
+		          <span class="text">Learn more</span>
+          </a>
+      </div>
+	 </div>
+      <div class="card_tris" id="card3">
+        <div class="content3">
+          {content3}
+        </div>
+		<br class="custom-br" />
+       <div class="button">
+	     <a href="#">
+	          <img src="img/paw.png" alt="Learn More Icon" class="icon">
+		          <span class="text">Learn more</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const contentElements = [
+        '.card_unus .content1',
+        '.card_duo .content2',
+        '.card_tris .content3',
+      ];
+      contentElements.forEach(contentSelector => {
+        const contentContainer = document.querySelector(contentSelector);
+        if (contentContainer) {
+          const title = contentContainer.querySelector('h2');
+          const paragraphs = contentContainer.querySelectorAll('p');
+
+          const newContent = document.createElement('div');
+          newContent.appendChild(title);
+
+          const lineBreak1 = document.createElement('br');
+		  lineBreak1.style.margin = '14px 0';
+          newContent.appendChild(lineBreak1);
+		  
+
+          paragraphs.forEach((paragraph, index) => {
+            newContent.appendChild(paragraph);
+
+            if (index < paragraphs.length - 1) {
+              const lineBreak = document.createElement('br');
+			  lineBreak1.style.margin = '14px 0';
+              newContent.appendChild(lineBreak);
+            }
+          });
+         
+          
+          contentContainer.innerHTML = newContent.innerHTML;
+        }
+      });
+    });
+  </script>
+ <script>
+ document.addEventListener('DOMContentLoaded', () => {
+  //Referencia al elemento de la tarjeta 3
+  const card1 = document.getElementById('card1');
+  const card3 = document.getElementById('card3');
+
+  if (card1) {
+    const cardRect = card1.getBoundingClientRect();
+    const cardTop = cardRect.top;
+    const cardLeft = cardRect.left;
+	const cardRight = cardRect.right;
+
+    console.log('Posición superior de la tarjeta 1: ' + cardTop + 'px');
+    console.log('Posición izquierda de la tarjeta 1: ' + cardLeft + 'px');
+	console.log('Posición derecha de la tarjeta 1: ' + cardRight + 'px');
+  }
+  
+  if (card3) {
+    const cardRect = card3.getBoundingClientRect();
+    const cardTop = cardRect.top;
+    const cardLeft = cardRect.left;
+	const cardRight = cardRect.right;
+
+    console.log('Posición superior de la tarjeta 3: ' + cardTop + 'px');
+    console.log('Posición izquierda de la tarjeta 3: ' + cardLeft + 'px');
+	console.log('Posición derecha de la tarjeta 3: ' + cardRight + 'px');
+  }
+});
+ </script>
+ <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const titleElement = document.querySelector('.title h1');
+    const navLinksElement = document.querySelector('.navlinks');
+
+    if (titleElement) {
+      const titleRect = titleElement.getBoundingClientRect();
+      const titleTop = titleRect.top;
+      const titleLeft = titleRect.left;
+	  const titleRight = titleRect.right;
+
+      console.log('Posición superior del título: ' + titleTop + 'px');
+      console.log('Posición izquierda del título: ' + titleLeft + 'px');
+      console.log('Posición derecha del título: ' + titleRight + 'px');
+    }
+
+    if (navLinksElement) {
+      const navLinksRect = navLinksElement.getBoundingClientRect();
+      const navLinksTop = navLinksRect.top;
+      const navLinksLeft = navLinksRect.left;
+	  const navLinksRight = navLinksRect.right;
+
+      console.log('Posición derecha de los enlaces de navegación: ' + navLinksRight + 'px');
+      console.log('Posición izquierda de los enlaces de navegación: ' + navLinksLeft + 'px');
+    }
+  });
+</script>
+
+</body>
+</html>
